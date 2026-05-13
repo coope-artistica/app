@@ -1,20 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Redireccionando...</title>
-  <script>
-    // 1. Captura los parámetros de la URL corta de GitHub
-    const parametros = window.location.search;
-    
-    // 2. Tu URL larga de la Web App de Apps Script
-    const urlWebApp = "https://script.google.com/macros/s/AKfycbwGMSe4xBT_zJXvv84BUZM6QB7UOOyro26p2J3qfeblJOKuDYxJQhIboo9hOVsxw2dT/exec";
-    
-    // 3. Redirecciona arrastrando los parámetros de forma limpia
-    window.location.href = urlWebApp + parametros;
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Aplicación</title>
+  <style>
+    /* Estilos para que el iframe ocupe el 100% de la pantalla sin bordes */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <p>Cargando la aplicación, por favor espere...</p>
+
+  <div id="contenedor-app" style="width: 100%; height: 100%;">
+    <p style="padding: 20px; font-family: sans-serif;">Cargando interfaz...</p>
+  </div>
+
+  <script>
+    // 1. Captura los parámetros de la barra de direcciones de GitHub Pages
+    const parametros = window.location.search;
+    
+    // 2. Colocá acá la URL de ejecución de tu Web App de Apps Script (terminada en /exec)
+    const urlWebApp = "google.com";
+    
+    // 3. Une la URL base de Google con los parámetros capturados
+    const urlFinal = urlWebApp + parametros;
+    
+    // 4. Inyecta el iframe de forma dinámica para arrastrar las variables
+    document.getElementById('contenedor-app').innerHTML = `
+      <iframe src="${urlFinal}" allow="geolocation; microphone; camera"></iframe>
+    `;
+  </script>
+
 </body>
 </html>
